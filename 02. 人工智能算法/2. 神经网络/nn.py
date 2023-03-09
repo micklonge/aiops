@@ -12,8 +12,8 @@ fashion_mnist = tf.keras.datasets.fashion_mnist
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
-print(test_images.shape)
 print(train_images.shape)
+print(test_images.shape)
 
 train_images = train_images / 255.0
 test_images = test_images / 255.0
