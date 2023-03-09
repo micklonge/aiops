@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"    
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>aiops</groupId>
+  <artifactId>aiops-ga</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencies>
+  
+  		<!-- <dependency>
+ 			<groupId>jstock</groupId>
+      		<artifactId>swingx</artifactId>
+      		<version>1.6.4</version>
+ 		</dependency>
+  
+  		<dependency>
+ 			<groupId>finance</groupId>
+      		<artifactId>finance-common-proto</artifactId>
+      		<version>0.0.1-SNAPSHOT</version>
+ 		</dependency>
+  
+  		<dependency>
+ 			<groupId>finance</groupId>
+      		<artifactId>finance-common-core</artifactId>
+      		<version>0.0.1-SNAPSHOT</version>
+ 		</dependency>
+  
+  		<dependency>
+ 			<groupId>finance</groupId>
+      		<artifactId>finance-common-front</artifactId>
+      		<version>0.0.1-SNAPSHOT</version>
+ 		</dependency>
+  
+  		<dependency>
+ 			<groupId>finance</groupId>
+      		<artifactId>finance-common-client-controller-mongoDB</artifactId>
+      		<version>0.0.1-SNAPSHOT</version>
+ 		</dependency>
+ 		
+  		<dependency>
+ 			<groupId>finance</groupId>
+      		<artifactId>finance-common-client-trade-mongoDB</artifactId>
+      		<version>0.0.1-SNAPSHOT</version>
+ 		</dependency>
+
+		<dependency>
+  			<groupId>org.springframework.boot</groupId>
+  			<artifactId>spring-boot-starter-logging</artifactId>
+  			<version>2.4.5</version>
+  		</dependency>  -->
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-jar-plugin</artifactId>
+		<version>3.0.2</version>
+		<configuration>
+		 	<archive>
+		  		<manifest>
+			   		<addClasspath>true</addClasspath>
+			   		<classpathPrefix>lib/</classpathPrefix>
+			   		<mainClass>com.finance.front.swing.JMenuFrame</mainClass>
+		  		</manifest>
+		 	</archive>
+		</configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
