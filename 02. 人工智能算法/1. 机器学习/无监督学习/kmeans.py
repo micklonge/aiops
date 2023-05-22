@@ -6,32 +6,6 @@ import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import scale
 
-# 随机生成两组二元正态分布随机数
-np.random.seed(1234)
-mean1 = [0.5, 0.5]
-cov1 = [[0.3, 0], [0, 0.1]]
-x1, y1 = np.random.multivariate_normal(mean1, cov1, 5000).T
-
-mean2 = [0, 8]
-cov2 = [[0.8, 0], [0, 2]]
-x2, y2 = np.random.multivariate_normal(mean2, cov2, 5000).T
-
-# 绘制两组数据的散点图
-plt.rcParams['axes.unicode_minus'] = False
-
-
-plt.scatter(x1, y1)
-plt.scatter(x2, y2)
-# 显示图形
-plt.show()
-
-# 将两组数据集汇总到数据框中
-X = pd.DataFrame(np.concatenate([np.array([x1, y1]), np.array([x2, y2])], axis=1).T)
-X.rename(columns={0: 'x1', 1: 'x2'}, inplace=True)
-# 自定义函数的调用
-# k_SSE(X, 10)
-
-
 def kmeans_outliers(data, clusters, is_scale=True):
     # 指定聚类个数，准备进行数据聚类
     kmeans = KMeans(n_clusters=clusters)
@@ -84,12 +58,33 @@ def kmeans_outliers(data, clusters, is_scale=True):
     # 返回数据的行合并结果
     return pd.concat(cluster_res)
 
+if __name__=='__main__':
+    # 随机生成两组二元正态分布随机数
+    np.random.seed(1234)
 
-# 调用函数，返回异常检测的结果
-res = kmeans_outliers(X, 2, False)
-# res
-# 绘图
-sns.lmplot(x="x1", y="x2", hue='OutLier', data=res,
+    mean1 = [0.5, 0.5]
+    cov1 = [[0.3, 0], [0, 0.1]]
+    x1, y1 = np.random.multivariate_normal(mean1, cov1, 5000).T
+
+    mean2 = [0, 8]
+    cov2 = [[0.8, 0], [0, 2]]
+    x2, y2 = np.random.multivariate_normal(mean2, cov2, 5000).T
+
+    # 绘制两组数据的散点图
+    plt.rcParams['axes.unicode_minus'] = False
+
+    plt.scatter(x1, y1)
+    plt.scatter(x2, y2)
+    # 显示图形
+    plt.show()
+
+    # 将两组数据集汇总到数据框中
+    X = pd.DataFrame(np.concatenate([np.array([x1, y1]), np.array([x2, y2])], axis=1).T)
+    X.rename(columns={0: 'x1', 1: 'x2'}, inplace=True)
+
+    res = kmeans_outliers(X, 2, False)
+
+    sns.lmplot(x="x1", y="x2", hue='OutLier', data=res,
            fit_reg=False, legend=False)
-plt.legend(loc='best')
-plt.show()
+    plt.legend(loc='best')
+    plt.show()
