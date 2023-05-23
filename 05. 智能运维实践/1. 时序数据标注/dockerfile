@@ -1,0 +1,40 @@
+from centos:7
+
+workdir /opt
+
+RUN yum install -y git gcc gcc-c++ kernel-devel python-devel
+RUN yum install -y patch
+RUN yum install -y wget
+
+RUN curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
+RUN python get-pip.py
+
+RUN git clone https://github.com/baidu/Curve.git
+
+RUN wget https://nodejs.org/dist/v10.9.0/node-v10.9.0-linux-x64.tar.xz
+RUN tar xf  node-v10.9.0-linux-x64.tar.xz
+RUN mv node-v10.9.0-linux-x64 /usr/local/node
+
+RUN ln -s /usr/local/node/bin/node /usr/bin/
+RUN ln -s /usr/local/node/bin/npm /usr/bin/
+
+RUN npm install qs --save
+
+RUN pip install virtualenv
+
+RUN rm -rf /opt/Curve/control.sh
+ADD control.sh /opt/Curve/
+RUN chmod 777 /opt/Curve/control.sh
+
+ADD util.py /opt/
+
+RUN cd Curve && ./control.sh check_web
+RUN cd Curve && ./control.sh check_py
+RUN cd Curve && ./control.sh check_api
+RUN cd Curve && ./control.sh check_path
+
+ADD start.sh start.sh
+RUN chmod 777 start.sh
+
+# ENTRYPOINT ["sh", "start.sh"]
+
